@@ -36,7 +36,7 @@ router.route('/get').get((req, res) => {
 //https//localhost:8070/student/update/:sid
 router.route('/update/:sid').put(async (req, res) => {
   let userID = req.params.sid;
-  const { name, age, gender } = res.body;
+  const { name, age, gender } = req.body;
 
   const updateStudent = {
     name,
@@ -48,7 +48,6 @@ router.route('/update/:sid').put(async (req, res) => {
     .then(() => {
       res.status(200).send({
         status: 'User Updated',
-        user: update,
       });
     })
     .catch((err) => {
@@ -82,16 +81,17 @@ router.route('/delete/:sid').delete(async (req, res) => {
 router.route('/get/:sid').get(async (req, res) => {
   const uID = req.params.sid;
   const user = await Student.findById(uID)
-    .then(() => {
+    .then((user) => {
       res.status(200).send({
         status: 'User Fetched',
-        user: user,
+        user,
       });
     })
     .catch((err) => {
       console.log(err.message);
       res.status(500).send({
         status: 'Error with fetch user',
+        error: err.message,
       });
     });
 });
