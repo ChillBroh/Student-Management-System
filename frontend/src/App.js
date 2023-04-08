@@ -1,11 +1,12 @@
 import "./App.css";
-import CounterClass from "./Components/CounterClass";
+import CounterClass from "./Components/1.CounterClass";
+import CounterFunction from "./Components/2.CounterFunction";
 
 function App() {
   return (
     <div className="App">
       <h1>hello world</h1>
-      <CounterClass />
+      <CounterFunction />
     </div>
   );
 }
