@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Student = require('../models/student');
 let student = require('../models/student');
 
-//https//localhost:8070/student/add
+//http//localhost:8070/student/add
 router.route('/add').post((req, res) => {
   const name = req.body.name;
   const age = Number(req.body.age);
