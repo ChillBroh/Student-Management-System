@@ -14,6 +14,7 @@ export default function AddStudent() {
       age,
       gender,
     };
+
     Swal.fire({
       title: "Do you want to save the changes?",
       showDenyButton: true,
@@ -39,6 +40,7 @@ export default function AddStudent() {
       }
     });
   };
+
   return (
     <div className="container">
       <form>
@@ -81,6 +83,9 @@ export default function AddStudent() {
                 name="gender"
                 id="male"
                 value="male"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
               />
               <label className="form-check-label" for="male">
                 Male
