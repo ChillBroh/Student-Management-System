@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../App.css";
 class CounterClass extends React.Component {
   constructor() {
     super();
@@ -32,7 +32,8 @@ class CounterClass extends React.Component {
   render() {
     return (
       <div>
-        <h1>Counter = {this.state.number}</h1>
+        <h2 className="countClass">Class Base Approch</h2>
+        <h2>Counter = {this.state.number}</h2>
         <button onClick={this.increament}>+</button>{" "}
         <button onClick={this.decrement}>-</button>{" "}
         <button onClick={this.reset}>Reset</button>
