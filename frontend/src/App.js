@@ -1,13 +1,17 @@
 import "./App.css";
-import CounterClass from "./Components/1.CounterClass";
-import CounterFunction from "./Components/2.CounterFunction";
+import Header from "./Components/header";
+import AddStudent from "./Components/AddStudent";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <CounterClass />
-      <hr />
-      <CounterFunction />
+    <div>
+      <Header />
+      <Router>
+        <Routes>
+          <Route path="/add" exact Component={AddStudent} />
+        </Routes>
+      </Router>
     </div>
   );
 }
