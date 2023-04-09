@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function ShowStudents() {
   const [students, setStudents] = useState([]);
@@ -16,8 +17,36 @@ export default function ShowStudents() {
     getStudents();
   }, []);
 
-  const update = (event) => {
-    const catchID = event.currentTarget.id;
+  const update = (id) => {
+    console.log(id);
+  };
+
+  const deleteUser = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:8070/student/delete/${id}`)
+          .then((res) => {
+            Swal.fire("Deleted!", res.data.status, "success");
+            //update table after deleting
+            const updatedStudents = students.filter(
+              (student) => student._id !== id
+            );
+            setStudents(updatedStudents);
+          })
+          .catch((err) => {
+            Swal.fire("Not Deleted!", err.message, "error");
+          });
+      }
+    });
   };
 
   return (
@@ -46,12 +75,15 @@ export default function ShowStudents() {
                   <button
                     type="button"
                     class="btn btn-primary"
-                    id={item._id}
-                    onClick={update}
+                    onClick={() => update(item._id)}
                   >
                     Update
                   </button>{" "}
-                  <button type="button" class="btn btn-danger">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onClick={() => deleteUser(item._id)}
+                  >
                     Delete
                   </button>
                 </td>
