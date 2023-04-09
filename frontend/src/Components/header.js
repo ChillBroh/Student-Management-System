@@ -33,7 +33,7 @@ function Header() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/get/sid">
                   Show a Student
                 </a>
               </li>
