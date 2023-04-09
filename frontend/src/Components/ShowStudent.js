@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export default function ShowStudents() {
   const [students, setStudents] = useState([]);
@@ -16,10 +17,6 @@ export default function ShowStudents() {
     };
     getStudents();
   }, []);
-
-  const update = (id) => {
-    console.log(id);
-  };
 
   const deleteUser = (id) => {
     Swal.fire({
@@ -72,16 +69,13 @@ export default function ShowStudents() {
                 <td>{item.age}</td>
                 <td>{item.gender}</td>
                 <td>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick={() => update(item._id)}
-                  >
+                  <Link to={`/get/${item._id}`} className="btn btn-primary">
                     Update
-                  </button>{" "}
+                  </Link>
+                  ;{" "}
                   <button
                     type="button"
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                     onClick={() => deleteUser(item._id)}
                   >
                     Delete
